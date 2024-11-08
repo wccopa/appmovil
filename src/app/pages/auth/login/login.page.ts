@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { User } from 'src/app/models/user.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,5 +28,10 @@ export class LoginPage implements OnInit {
         console.log(res);
       });
     }
+  }
+
+  async iniciarGoogle() {
+    await this.firebaseSvc.iniciarGoogle();
+    this.firebaseSvc.routerLink('/home');
   }
 }
