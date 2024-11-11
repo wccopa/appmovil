@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword, getAuth, signInWithPopup } from 'firebase/a
 import { User } from '../models/user.model';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,14 @@ export class FirebaseService {
 
   signIn(user: User) {
     return signInWithEmailAndPassword(getAuth(), user.email, user.password);
+  }
+
+  get currentUser(): Observable<any> {
+    return this.auth.authState;
+  }
+
+  getauth() {
+    return getAuth();
   }
 
   async iniciarGoogle() {
